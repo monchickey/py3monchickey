@@ -16,9 +16,9 @@ def create_dirs(path):
     """
     if os.path.exists(path):
         return False
-    else:
-        os.makedirs(path)
-        return True
+    os.makedirs(path)
+    return True
+
 
 def delete_path(path):
     """递归删除指定路径
@@ -35,6 +35,7 @@ def delete_path(path):
     else:
         if os.path.exists(path):
             os.remove(path)
+
 
 def read_file(filename) -> bytes:
     """读取文件所有内容, 并返回为二进制字节数组
@@ -56,14 +57,13 @@ def file_append_content(filename, content: bytes):
     with open(filename, "ab") as fp:
         fp.write(content)
 
-
 def get_files(dir_path):
     """获取指定目录下的文件列表 (包括文件和目录)
     只遍历一层
     """
     return os.listdir(dir_path)
-
     
+
 def read_file_hex(filename, byte_number=0):
     """读取文件数据并以16进制的字符串形式返回
     Args:
