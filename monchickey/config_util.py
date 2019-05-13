@@ -8,8 +8,14 @@ def get_yaml_config(file_path):
     Args:
         file_path: 配置文件路径
     Returns:
-        python内置对象(dict以及嵌套类型)
+        python dict
+    yaml Loader:
+        BaseLoader - Only loads the most basic YAML
+        SafeLoader <=> yaml.safe_load(input)
+        FullLoader <=> yaml.full_load(input), default
+        UnsafeLoader <=> yaml.unsafe_load(input)
+        See: https://github.com/yaml/pyyaml/wiki/PyYAML-yaml.load(input)-Deprecation
     """
     with open(file_path) as f:
-        config = yaml.load(f)
+        config = yaml.load(f, Loader=yaml.FullLoader)
     return config

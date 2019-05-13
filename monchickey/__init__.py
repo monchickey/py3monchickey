@@ -10,8 +10,10 @@ from .counter import Counter
 from .daemon import Daemon
 from .ftp_util import FTPUtil
 
+from monchickey import config_util
+
 __all__ = (
-    'add_stderr_logger'
+    'add_stderr_logger',
 )
 
 logging.getLogger(__name__).addHandler(NullHandler())
