@@ -7,6 +7,7 @@ import binascii
 import base64
 import random
 import hashlib
+from datetime import datetime
 
 import xxhash
 
@@ -121,6 +122,28 @@ def str2timestamp(time_str, time_format):
         返回unix时间戳, 类型: float, 单位: s
     """
     return time.mktime(time.strptime(time_str, time_format))
+
+def str_to_timestamp(time_as_str, time_format) -> float:
+    """转换时间字符串为unix时间戳
+    Args:
+        time_as_str: 时间字符串, 比如: 2019-09-10 15:20:25
+        time_format: 时间格式, 比如: %Y-%m-%d %H:%M:%S
+    Returns:
+        unix时间戳, 类型: float
+    """
+    datetime_ = datetime.strptime(time_as_str, time_format)
+    return datetime_.timestamp()
+
+def timestamp_to_str(timestamp: float, time_format: str) -> str:
+    """转换时间戳为字符串格式
+    Args:
+        timestamp: unix时间戳
+        time_format: 时间格式
+    Returns:
+        字符串描述的时间形式
+    """
+    datetime_ = datetime.fromtimestamp(timestamp)
+    return datetime_.strftime(time_format)
 
 def bytes2hex(bytes_data: bytes) -> str:
     """转换二进制字符串数据为十六进制字符串表示
